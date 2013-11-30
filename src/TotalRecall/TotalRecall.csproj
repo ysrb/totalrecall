@@ -36,8 +36,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Autofac.3.1.5\lib\net40\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\..\..\..\JD\Jay.Cms\packages\Custom\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.4.0.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\lib\log4net.dll</HintPath>
@@ -48,11 +49,13 @@
     <Reference Include="Lucene.Net.Contrib.Highlighter">
       <HintPath>..\..\lib\Lucene.Net.Contrib.Highlighter.dll</HintPath>
     </Reference>
-    <Reference Include="NCrawler">
-      <HintPath>..\..\..\..\JD\Jay.Cms\packages\Custom\NCrawler.dll</HintPath>
+    <Reference Include="NCrawler, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NCrawler.dll</HintPath>
     </Reference>
-    <Reference Include="NCrawler.HtmlProcessor">
-      <HintPath>..\..\..\..\JD\Jay.Cms\packages\Custom\NCrawler.HtmlProcessor.dll</HintPath>
+    <Reference Include="NCrawler.HtmlProcessor, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NCrawler.HtmlProcessor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
