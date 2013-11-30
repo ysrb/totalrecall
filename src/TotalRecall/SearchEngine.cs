@@ -70,5 +70,10 @@ namespace TotalRecall
 
             searcher = new IndexSearcher(FSDirectory.Open(new DirectoryInfo(config.IndexFolder)), true);
         }
+
+        public SearchEngine(string indexFolderPath)
+        {
+            searcher = new IndexSearcher(FSDirectory.Open(new DirectoryInfo(indexFolderPath)), true);
+        }
     }
 }

@@ -32,6 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.3.1.5\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\..\..\JD\Jay.Cms\packages\Custom\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\lib\log4net.dll</HintPath>
     </Reference>
@@ -42,7 +49,10 @@
       <HintPath>..\..\lib\Lucene.Net.Contrib.Highlighter.dll</HintPath>
     </Reference>
     <Reference Include="NCrawler">
-      <HintPath>..\..\lib\NCrawler.dll</HintPath>
+      <HintPath>..\..\..\..\JD\Jay.Cms\packages\Custom\NCrawler.dll</HintPath>
+    </Reference>
+    <Reference Include="NCrawler.HtmlProcessor">
+      <HintPath>..\..\..\..\JD\Jay.Cms\packages\Custom\NCrawler.HtmlProcessor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -67,6 +77,9 @@
     <Compile Include="Hit.cs" />
     <Compile Include="SiteCrawler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
