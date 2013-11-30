@@ -21,10 +21,12 @@ namespace TotalRecall
         public string WebsiteUrl { get; set; }
         public IConfig Config { get; set; }
         public ILogWrapper LogWrapper { get; set; }
+        public Dictionary<string, string> FilterTextRules { get; set; }
+        public Dictionary<string, string> FilterLinksRules { get; set; }
 
         public void Crawl()
         {
-            using (Crawler c = new Crawler(new Uri(this.WebsiteUrl), new HtmlDocumentProcessor(), new DocumentIndexStep(this.Config, this.LogWrapper)))
+            using (Crawler c = new Crawler(new Uri(this.WebsiteUrl), new HtmlDocumentProcessor(FilterTextRules, FilterLinksRules), new DocumentIndexStep(this.Config, this.LogWrapper)))
             {
                 this.LogWrapper.Info("Crawler started: Using " + (System.Environment.ProcessorCount * 2) + " threads");
 
@@ -50,6 +52,8 @@ namespace TotalRecall
             WebsiteUrl = websiteUrl;
             Config = config;
             LogWrapper = log;
+            FilterTextRules = new Dictionary<string, string>();
+            FilterLinksRules = new Dictionary<string, string>();
         }
     }
 }
