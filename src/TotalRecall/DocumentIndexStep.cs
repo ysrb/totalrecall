@@ -51,6 +51,7 @@ namespace TotalRecall
             }
 
             repository.Dispose();
+            log.Info("Repository disposed");
         }
 
         public void Process(Crawler crawler, PropertyBag propertyBag)
@@ -74,7 +75,7 @@ namespace TotalRecall
                 repository.Delete(id);
             } else
             {
-                log.Warning("Crawler encountered status " + propertyBag.StatusCode.ToString() + " (" + propertyBag.StatusDescription + ") for document " + id);
+                log.Warning(string.Format("Crawler encountered status {0} - {4} ({1}) for document {2} - {3}", propertyBag.StatusCode.ToString(), propertyBag.StatusDescription, id, propertyBag.Step.Uri, ((int)propertyBag.StatusCode).ToString()));
             }
         }
     }

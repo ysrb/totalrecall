@@ -72,7 +72,7 @@ namespace TotalRecall.ConsoleApp
                     IndexFolder = indexFolder,
                     Optimize = optimize
                 }, new ConsoleLogWrapper());
-
+                crawler.AdhereToRobotRules = false;
                 crawler.Crawl();
             }
 
