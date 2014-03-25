@@ -25,9 +25,9 @@ namespace TotalRecall
             TermQuery query = new TermQuery(new Term("path", id));
             TopDocs docs = searcher.Search(query, null, 1);
 
-            if (docs.totalHits >= 1)
+            if (docs.TotalHits >= 1)
             {
-                return searcher.Doc(docs.scoreDocs[0].doc);
+                return searcher.Doc(docs.ScoreDocs[0].Doc);
             }
             return null;
         }
@@ -49,7 +49,7 @@ namespace TotalRecall
 
             if (doc != null)
             {
-                if ((long)(lastModified - epoch).TotalMilliseconds < DateTools.StringToTime(doc.GetField("modified").StringValue()))
+                if ((long)(lastModified - epoch).TotalMilliseconds < DateTools.StringToTime(doc.GetField("modified").StringValue))
                 {
                     log.Info("Document ID " + id + " already exists in the index and doesn't need to be updated.");
                     return;

@@ -26,15 +26,20 @@ namespace TotalRecall
         public Dictionary<string, string> FilterLinksRules { get; set; }
         public bool AdhereToRobotRules { get; set; }
         public IEnumerable<IFilter> ExcludeFilter { get; set; }
+        public UriComponents UriSensitivity { get; set; }
+        public int? MaximumCrawlDepth { get; set; }
+        public int MaximumThreadCount { get; set; }
         public void Crawl()
         {
             using (Crawler c = new Crawler(new Uri(this.WebsiteUrl), new HtmlDocumentProcessor(FilterTextRules, FilterLinksRules), new DocumentIndexStep(this.Config, this.LogWrapper)))
             {
-                this.LogWrapper.Info("Crawler started: Using " + (System.Environment.ProcessorCount * 2) + " threads");
+                this.LogWrapper.Info("Crawler started: Using " + MaximumThreadCount + " threads");
 
                 c.AdhereToRobotRules = AdhereToRobotRules;
-                c.MaximumThreadCount = System.Environment.ProcessorCount * 2;
+                c.MaximumThreadCount = MaximumThreadCount;
                 c.ExcludeFilter = ExcludeFilter;
+                c.UriSensitivity = UriSensitivity;
+                c.MaximumCrawlDepth = MaximumCrawlDepth;
                 c.Crawl();
             }
         }
@@ -53,10 +58,12 @@ namespace TotalRecall
             Config = config;
             LogWrapper = log;
             ExcludeFilter = new[] {
-                new NCrawler.Services.RegexFilter(new Regex(@"(\.jpg|\.css|\.js|\.gif|\.jpeg|\.png|\.ico)"))
+                new NCrawler.Services.RegexFilter(new Regex(@"(\.jpg|\.css|\.js|\.gif|\.jpeg|\.png|\.ico|\.pdf)"))
             };
             FilterTextRules = new Dictionary<string, string>();
             FilterLinksRules = new Dictionary<string, string>();
+            UriSensitivity = UriComponents.Path;
+            MaximumThreadCount = System.Environment.ProcessorCount * 2;
         }
     }
 }

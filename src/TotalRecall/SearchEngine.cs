@@ -13,7 +13,7 @@ using Lucene.Net.Store;
 using System.IO;
 using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Search.Spans;
-using Lucene.Net.Highlight;
+using Lucene.Net.Search.Highlight;
 
 namespace TotalRecall
 {
@@ -33,19 +33,19 @@ namespace TotalRecall
             Query q = qp.Parse(query);
 
             TopDocs top = searcher.Search(q, maxResults);
-            List<Hit> result = new List<Hit>(top.totalHits);
+            List<Hit> result = new List<Hit>();
 
-            for (int index = 0; index < top.totalHits; index++)
+            foreach (var scoreDoc in top.ScoreDocs)
             {
-                var doc = searcher.Doc(top.scoreDocs[index].doc);
+                var doc = searcher.Doc(scoreDoc.Doc);
                 string contents = doc.Get("contents");
 
-                var scorer = new QueryScorer(q, searcher.GetIndexReader(), "contents");
+                var scorer = new QueryScorer(q, searcher.IndexReader, "contents");
                 var highlighter = new Highlighter(scorer);
 
                 result.Add(new Hit()
                 {
-                    Relevance = top.scoreDocs[index].score,
+                    Relevance = scoreDoc.Score,
                     Title = doc.Get("title"),
                     Url = doc.Get("path"),
                     Excerpt = highlighter.GetBestFragment(analyzer, "contents", contents)
