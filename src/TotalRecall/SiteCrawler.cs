@@ -29,6 +29,7 @@ namespace TotalRecall
         public UriComponents UriSensitivity { get; set; }
         public int? MaximumCrawlDepth { get; set; }
         public int MaximumThreadCount { get; set; }
+        public List<string> ExtraLinks { get; set; }
         public void Crawl()
         {
             using (Crawler c = new Crawler(new Uri(this.WebsiteUrl), new HtmlDocumentProcessor(FilterTextRules, FilterLinksRules), new DocumentIndexStep(this.Config, this.LogWrapper)))

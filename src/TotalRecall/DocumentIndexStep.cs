@@ -63,7 +63,7 @@ namespace TotalRecall
             }
 
             string id = config.GetDocumentPath(propertyBag.Step.Uri);
-
+            log.Info("Uri [" + propertyBag.Step.Uri + "] statusCode: " + propertyBag.StatusCode + " - " + propertyBag.StatusDescription);
             if (propertyBag.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 repository.AddUpdate(id, propertyBag.Title, propertyBag.Text, propertyBag.LastModified);

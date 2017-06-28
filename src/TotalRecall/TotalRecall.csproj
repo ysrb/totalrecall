@@ -53,9 +53,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="NCrawler, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="NCrawler, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\NCrawler.dll</HintPath>
+      <HintPath>..\..\..\..\JD\jay-cms-ultimate-cruising\packages\Custom\NCrawler.dll</HintPath>
     </Reference>
     <Reference Include="NCrawler.HtmlProcessor, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
