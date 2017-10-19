@@ -45,10 +45,12 @@ namespace TotalRecall
 
         public void AddUpdate(string id, string title, string contents, DateTime lastModified)
         {
+            log.Info("Document ID " + id + " in AddUpdate.");
             Document doc = Find(id);
 
             if (doc != null)
             {
+                log.Info("Document ID " + id + " in AddUpdate. doc is not null");
                 if ((long)(lastModified - epoch).TotalMilliseconds < DateTools.StringToTime(doc.GetField("modified").StringValue))
                 {
                     log.Info("Document ID " + id + " already exists in the index and doesn't need to be updated.");
@@ -63,8 +65,9 @@ namespace TotalRecall
             doc.Add(new Field("title", title, Field.Store.YES, Field.Index.ANALYZED));
             doc.Add(new Field("contents", contents, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS));
             doc.Add(new Field("modified", DateTools.TimeToString((long)(DateTime.Now - epoch).TotalMilliseconds, DateTools.Resolution.MINUTE), Field.Store.YES, Field.Index.NOT_ANALYZED));
-
+            log.Info("Document ID " + id + " in AddUpdate doc added");
             this.index.AddDocument(doc);
+            log.Info("Document ID " + id + " in AddUpdate index adddocument");
         }
 
         public DocumentRepository(IndexWriter index, ILogWrapper log)
