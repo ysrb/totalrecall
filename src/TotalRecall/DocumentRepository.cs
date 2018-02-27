@@ -88,8 +88,10 @@ namespace TotalRecall
             if (!finalized)
             {
                 index.Commit();
-                reader.Close();
-                searcher.Close();
+                //reader.Close();
+                reader.Dispose();
+                //searcher.Close();
+                searcher.Dispose();
                 finalized = true;
                 GC.SuppressFinalize(this);
             }
