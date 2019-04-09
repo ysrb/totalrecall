@@ -13,6 +13,7 @@ using Lucene.Net.Store;
 using System.IO;
 using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Search.Spans;
+using System.Security;
 using Lucene.Net.Search.Highlight;
 
 namespace TotalRecall
@@ -21,17 +22,21 @@ namespace TotalRecall
     {
         private readonly IndexSearcher searcher;
 
-        public IEnumerable<Hit> Search(string query, int maxResults)
+        public IEnumerable<Hit> Search(string query, int maxResults, out string queryParse)
         {
-            var analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_29);
+            queryParse = string.Empty;
+
+            var analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_30);
 
             QueryParser qp = new QueryParser(
-                Lucene.Net.Util.Version.LUCENE_29,
+                Lucene.Net.Util.Version.LUCENE_30,
                 "contents",
                 analyzer
             );
-            Query q = qp.Parse(query);
-
+            query = QueryParser.Escape(query);
+            queryParse = string.Format("\"{0}\" OR {0}*", query); 
+            Query q = qp.Parse(queryParse);
+            
             TopDocs top = searcher.Search(q, maxResults);
             List<Hit> result = new List<Hit>();
 
