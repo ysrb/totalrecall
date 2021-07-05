@@ -41,6 +41,7 @@ namespace TotalRecall
                 c.ExcludeFilter = ExcludeFilter;
                 c.UriSensitivity = UriSensitivity;
                 c.MaximumCrawlDepth = MaximumCrawlDepth;
+                c.ExtraLinks = ExtraLinks;
                 c.Crawl();
             }
         }
